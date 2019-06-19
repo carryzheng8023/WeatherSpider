@@ -68,15 +68,12 @@ COOKIES_ENABLED = False
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    # 'ArticleSpider.pipelines.JsonExporterPipleline': 2,
-    # # 'scrapy.pipelines.images.ImagesPipeline': 1,
-    #  'ArticleSpider.pipelines.ArticleImagePipeline': 1,
-    #  'ArticleSpider.pipelines.MysqlTwistedPipline': 1,
-    # 'ArticleSpider.pipelines.ElasticsearchPipeline': 1
+    # 'WeatherSpider.pipelines.WeatherSpiderPipeline': 300,
+    'WeatherSpider.pipelines.MySqlPipeline': 1
 }
-IMAGES_URLS_FIELD = "front_image_url"
+
 project_dir = os.path.abspath(os.path.dirname(__file__))
-IMAGES_STORE = os.path.join(project_dir, 'images')
+
 
 import sys
 
