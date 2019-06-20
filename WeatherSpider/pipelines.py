@@ -34,11 +34,11 @@ class MySqlPipeline(object):
             use_unicode=True
         )
         # self.conn = MySQLdb.connect(
-        #     host='xdata22.bigdata',
-        #     user='csust',
-        #     password='csust',
+        #     host='10.6.6.127',
+        #     user='root',
+        #     password='ausadmin123',
         #     db='csust',
-        #     port=3309,
+        #     port=3307,
         #     charset='utf8',
         #     use_unicode=True
         # )

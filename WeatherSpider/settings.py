@@ -109,11 +109,11 @@ AUTOTHROTTLE_ENABLED = True
 # HTTPCACHE_IGNORE_HTTP_CODES = []
 # HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
-# MYSQL_HOST = "xdata22.bigdata"
+# MYSQL_HOST = "10.6.6.127"
 # MYSQL_DBNAME = "csust"
-# MYSQL_USER = "csust"
-# MYSQL_PASSWORD = "csust"
-# MYSQL_PORT = 3309
+# MYSQL_USER = "root"
+# MYSQL_PASSWORD = "ausadmin123"
+# MYSQL_PORT = 3307
 
 MYSQL_HOST = "carryzheng.xin"
 MYSQL_DBNAME = "test"
