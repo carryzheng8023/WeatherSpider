@@ -24,24 +24,16 @@ class WeatherSpiderPipeline(object):
 
 class MySqlPipeline(object):
     def __init__(self):
+
         self.conn = MySQLdb.connect(
-            host='carryzheng.xin',
-            user='zxxx',
-            password='c5AE@lj-jmZU',
-            db='test',
-            port=3306,
+            host='10.6.6.127',
+            user='root',
+            password='ausadmin123',
+            db='csust',
+            port=3307,
             charset='utf8',
             use_unicode=True
         )
-        # self.conn = MySQLdb.connect(
-        #     host='10.6.6.127',
-        #     user='root',
-        #     password='ausadmin123',
-        #     db='csust',
-        #     port=3307,
-        #     charset='utf8',
-        #     use_unicode=True
-        # )
         self.cursor = self.conn.cursor()
 
     def process_item(self, item, spider):

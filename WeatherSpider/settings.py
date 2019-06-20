@@ -109,17 +109,12 @@ AUTOTHROTTLE_ENABLED = True
 # HTTPCACHE_IGNORE_HTTP_CODES = []
 # HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
-# MYSQL_HOST = "10.6.6.127"
-# MYSQL_DBNAME = "csust"
-# MYSQL_USER = "root"
-# MYSQL_PASSWORD = "ausadmin123"
-# MYSQL_PORT = 3307
+MYSQL_HOST = "10.6.6.127"
+MYSQL_DBNAME = "csust"
+MYSQL_USER = "root"
+MYSQL_PASSWORD = "ausadmin123"
+MYSQL_PORT = 3307
 
-MYSQL_HOST = "carryzheng.xin"
-MYSQL_DBNAME = "test"
-MYSQL_USER = "zxxx"
-MYSQL_PASSWORD = "c5AE@lj-jmZU"
-MYSQL_PORT = 3306
 
 SQL_DATETIME_FORMAT = "%Y-%m-%d %H:%M:%S"
 SQL_DATE_FORMAT = "%Y-%m-%d"
