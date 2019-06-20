@@ -9,6 +9,7 @@ import MySQLdb
 import datetime
 import uuid
 from WeatherSpider.utils.common import parse_float
+from WeatherSpider.utils.common import parse_int
 from WeatherSpider.utils.common import fl_dict
 from WeatherSpider.utils.common import area_dict
 from WeatherSpider.utils.common import area_num_dict
@@ -74,7 +75,7 @@ class MySqlPipeline(object):
             sd = parse_float(weather.get('od27', 0.0))
             js = parse_float(weather.get('od26', 0.0))
             fx = weather.get('od24', '暂无风向')
-            fl = parse_float(weather.get('od25', 0.0))
+            fl = parse_int(weather.get('od25', 0.0))
             fs = fl_dict.get(fl, 0.0)
             fzy = 0.58 * fs * fs * fs
             fzy = 0.1 if fzy < 0.1 else fzy
@@ -83,7 +84,7 @@ class MySqlPipeline(object):
             qx_date = start_time[:10]
 
             insert_sql = """
-                      insert into weather_spider(qx_id, area, wd, sd, js, fx, fl, fs, fzy, kqzl, create_time, 
+                      insert into dm_qx_weather_spider(qx_id, area, wd, sd, js, fx, fl, fs, fzy, kqzl, create_time, 
                       modify_time, qx_date, is_error)
                       values(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                     """
@@ -96,7 +97,7 @@ class MySqlPipeline(object):
             except Exception as e:
                 print(e)
                 update_sql = """
-                          update weather_spider set wd = %s, sd = %s, js = %s, fl = %s, fs = %s, fzy = %s, kqzl = %s, 
+                          update dm_qx_weather_spider set wd = %s, sd = %s, js = %s, fl = %s, fs = %s, fzy = %s, kqzl = %s, 
                           modify_time = %s where qx_id = %s
                         """
                 # print("update_sql:::" + update_sql)
@@ -174,7 +175,7 @@ class MysqlTwistedPipeline(object):
             qx_date = start_time[:10]
 
             insert_sql = """
-                              insert into weather_spider(qx_id, area, wd, sd, js, fx, fl, fs, fzy, kqzl, create_time, 
+                              insert into dm_qx_weather_spider(qx_id, area, wd, sd, js, fx, fl, fs, fzy, kqzl, create_time, 
                               modify_time, qx_date, is_error)
                               values(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                             """
@@ -186,7 +187,7 @@ class MysqlTwistedPipeline(object):
             except Exception as e:
                 print(e)
                 update_sql = """
-                                  update weather_spider set wd = %s, sd = %s, js = %s, fl = %s, fs = %s, fzy = %s, kqzl = %s, 
+                                  update dm_qx_weather_spider set wd = %s, sd = %s, js = %s, fl = %s, fs = %s, fzy = %s, kqzl = %s, 
                                   modify_time = %s where qx_id = %s
                                 """
                 # print("update_sql:::" + update_sql)

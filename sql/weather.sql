@@ -1,5 +1,5 @@
 use csust;
-create table if not exists weather_spider(
+create table if not exists dm_qx_weather_spider(
   qx_id varchar(20) primary key not null comment '主键',
   area varchar(10) comment '区域名称',
   wd double default 0.0 comment '温度',
