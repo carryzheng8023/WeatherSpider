@@ -66,4 +66,7 @@ class WeatherSpider(scrapy.Spider):
             yield weather_item
         except json.JSONDecodeError as e:
             print('json转换出错！待解析数据为：', end=' ')
+            weather_item['start_time'] = ''
+            weather_item['area'] = ''
+            weather_item['data'] = []
             print(re_selector)
