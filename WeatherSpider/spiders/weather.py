@@ -12,21 +12,6 @@ class WeatherSpider(scrapy.Spider):
 
     start_urls = ['http://www.weather.com.cn/']
 
-    # def start_requests(self):
-    #     reqs = []
-    #     for i in range(1, 16):
-    #         if i < 10:
-    #             req = scrapy.Request(
-    #                 "http://www.weather.com.cn/weather1d/101250%s01.shtml" % i)
-    #             reqs.append(req)
-    #         else:
-    #             if i == 13:
-    #                 continue
-    #             req = scrapy.Request(
-    #                 "http://www.weather.com.cn/weather1d/10125%s01.shtml" % i)
-    #             reqs.append(req)
-    #     return reqs
-
     def parse(self, response):
         post_urls = [
             "http://www.weather.com.cn/weather1d/101250101.shtml",
@@ -66,7 +51,15 @@ class WeatherSpider(scrapy.Spider):
             yield weather_item
         except json.JSONDecodeError as e:
             print('json转换出错！待解析数据为：', end=' ')
-            weather_item['start_time'] = ''
-            weather_item['area'] = ''
-            weather_item['data'] = []
             print(re_selector)
+            index = weather_json.rfind(',')
+            new_weather_json = weather_json[:index] + weather_json[index + 1:]
+            try:
+                weather_dict = json.loads(new_weather_json)
+                weather_item['start_time'] = weather_dict['od'].get('od0', '19700101000000')
+                weather_item['area'] = weather_dict['od'].get('od1', 'hn')
+                weather_item['data'] = weather_dict['od'].get('od2', [])
+                yield weather_item
+            except json.JSONDecodeError as e:
+                print('json转换出错！待解析数据为：', end=' ')
+                print(re_selector)
