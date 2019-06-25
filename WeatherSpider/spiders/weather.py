@@ -50,8 +50,8 @@ class WeatherSpider(scrapy.Spider):
             weather_item['data'] = weather_dict['od'].get('od2', [])
             yield weather_item
         except json.JSONDecodeError as e:
-            print('json转换出错！待解析数据为：', end=' ')
-            print(re_selector)
+            # print('json转换出错！待解析数据为：', end=' ')
+            # print(re_selector)
             index = weather_json.rfind(',')
             new_weather_json = weather_json[:index] + weather_json[index + 1:]
             try:
@@ -61,5 +61,6 @@ class WeatherSpider(scrapy.Spider):
                 weather_item['data'] = weather_dict['od'].get('od2', [])
                 yield weather_item
             except json.JSONDecodeError as e:
-                print('json转换出错！待解析数据为：', end=' ')
-                print(re_selector)
+                print(e)
+                # print('json转换出错！待解析数据为：', end=' ')
+                # print(re_selector)

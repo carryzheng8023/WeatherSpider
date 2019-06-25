@@ -42,10 +42,10 @@ class MySqlPipeline(object):
         area_name = item['area']
         data = item['data']
 
-        print("start_time:::" + start_time)
-        print("area_name:::" + area_name)
-        print("data:::")
-        print(data)
+        # print("start_time:::" + start_time)
+        # print("area_name:::" + area_name)
+        # print("data:::")
+        # print(data)
 
         now = datetime.datetime.now()
         create_time = now.strftime('%Y%m%d%H%M%S')
@@ -61,7 +61,7 @@ class MySqlPipeline(object):
                 is_error = 1
                 qx_id = uuid.uuid1().get_hex()[16:]
 
-            print("qx_id:::" + qx_id)
+            # print("qx_id:::" + qx_id)
             area = area_dict.get(area_name, '')
             wd = parse_float(weather.get('od22', 0.0))
             sd = parse_float(weather.get('od27', 0.0))
@@ -85,7 +85,7 @@ class MySqlPipeline(object):
                 self.cursor.execute(insert_sql, (
                     qx_id, area, wd, sd, js, fx, fl, fs, fzy, kqzl, create_time, modify_time, qx_date, is_error))
                 self.conn.commit()
-                print("插入" + qx_id + "完成！")
+                # print("插入" + qx_id + "完成！")
             except Exception as e:
                 print(e)
                 update_sql = """
@@ -95,7 +95,7 @@ class MySqlPipeline(object):
                 # print("update_sql:::" + update_sql)
                 self.cursor.execute(update_sql, (wd, sd, js, fl, fs, fzy, kqzl, modify_time, qx_id))
                 self.conn.commit()
-                print("更新" + qx_id + "完成！")
+                # print("更新" + qx_id + "完成！")
             s_t = datetime.datetime.strptime(start_time, '%Y%m%d%H%M%S')
             start_time = (s_t + datetime.timedelta(hours=1)).strftime('%Y%m%d%H%M%S')
 
@@ -133,10 +133,10 @@ class MysqlTwistedPipeline(object):
         area_name = item['area']
         data = item['data']
 
-        print("start_time:::" + start_time)
-        print("area_name:::" + area_name)
-        print("data:::")
-        print(data)
+        # print("start_time:::" + start_time)
+        # print("area_name:::" + area_name)
+        # print("data:::")
+        # print(data)
 
         now = datetime.datetime.now()
         create_time = now.strftime('%Y%m%d%H%M%S')
@@ -152,7 +152,7 @@ class MysqlTwistedPipeline(object):
                 is_error = 1
                 qx_id = uuid.uuid1().get_hex()[16:]
 
-            print("qx_id:::" + qx_id)
+            # print("qx_id:::" + qx_id)
             area = area_dict.get(area_name, '')
             wd = parse_float(weather.get('od22', 0.0))
             sd = parse_float(weather.get('od27', 0.0))
@@ -175,7 +175,7 @@ class MysqlTwistedPipeline(object):
             try:
                 cursor.execute(insert_sql, (
                     qx_id, area, wd, sd, js, fx, fl, fs, fzy, kqzl, create_time, modify_time, qx_date, is_error))
-                print("插入" + qx_id + "完成！")
+                # print("插入" + qx_id + "完成！")
             except Exception as e:
                 print(e)
                 update_sql = """
@@ -184,6 +184,6 @@ class MysqlTwistedPipeline(object):
                                 """
                 # print("update_sql:::" + update_sql)
                 cursor.execute(update_sql, (wd, sd, js, fl, fs, fzy, kqzl, modify_time, qx_id))
-                print("更新" + qx_id + "完成！")
+                # print("更新" + qx_id + "完成！")
             s_t = datetime.datetime.strptime(start_time, '%Y%m%d%H%M%S')
             start_time = (s_t + datetime.timedelta(hours=1)).strftime('%Y%m%d%H%M%S')
